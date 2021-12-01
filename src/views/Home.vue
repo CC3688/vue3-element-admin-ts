@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <h1>{{ baseApiUrl }}</h1>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+
+const baseApiUrl = process.env.VUE_APP_BASE_API
 
 export default defineComponent({
   name: 'Home',
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      baseApiUrl,
+    }
   },
 })
 </script>
