@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "concurrently \"npm run serve \" \"npm run mock \" ",
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "build:preview": "vue-cli-service build --mode preview",
     "build:prod": "vue-cli-service build",
-    "mock": "json-server --watch ./mock/db.json"
+    "mock": "json-server --watch ./mock/db.json",
+    "view": "node script/app.js",
+    "dsl": "node script/dsl.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -26,6 +29,7 @@
     "@types/jest": "^24.0.19",
     "@types/js-cookie": "^3.0.1",
     "@types/md5": "^2.3.1",
+    "@types/node": "^16.11.11",
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
@@ -40,6 +44,8 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-0",
+    "concurrently": "^6.4.0",
+    "ejs": "^3.1.6",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.20.2",
@@ -47,12 +53,13 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
+    "fs-extra": "^10.0.0",
     "json-server": "^0.17.0",
     "lint-staged": "^9.5.0",
     "prettier": "^2.5.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5",
+    "typescript": "^4.1.6",
     "unplugin-vue-components": "^0.17.2",
     "vue-cli-plugin-element-plus": "0.0.13",
     "vue-jest": "^5.0.0-0"
