@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ baseApiUrl }}</h1>
+    <el-button>btn</el-button>
   </div>
 </template>
 
