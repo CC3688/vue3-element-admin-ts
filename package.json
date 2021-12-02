@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:prod": "vue-cli-service build",
-    "build:preview": "vue-cli-service build --mode preview",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
+    "build:preview": "vue-cli-service build --mode preview",
+    "build:prod": "vue-cli-service build",
     "mock": "json-server --watch ./mock/db.json"
   },
   "dependencies": {
@@ -40,8 +40,6 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-0",
-    "babel-plugin-component": "^1.1.1",
-    "babel-plugin-import": "^1.13.3",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.20.2",
@@ -56,6 +54,7 @@
     "sass-loader": "^8.0.2",
     "typescript": "~4.1.5",
     "unplugin-vue-components": "^0.17.2",
+    "vue-cli-plugin-element-plus": "0.0.13",
     "vue-jest": "^5.0.0-0"
   },
   "gitHooks": {
