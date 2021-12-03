@@ -155,7 +155,7 @@ service.interceptors.response.use(
       message: message || error.message,
     })
 
-    if (error.response.status === 401) {
+    if (error?.response?.status === 401) {
       // removeToken()
       location.href = '/'
     }
@@ -174,15 +174,15 @@ service.interceptors.response.use(
  *
  */
 
-interface Base<T> {
-  data: T
-  meta: {
-    status: number
-    msg: string
-  }
-}
+// interface Base<T> {
+//   data: T
+//   meta: {
+//     status: number
+//     msg: string
+//   }
+// }
 
-async function http<T>(config: AxiosRequestConfig): Promise<Base<T>> {
+async function http<T>(config: AxiosRequestConfig): Promise<T> {
   const key = getKey(config)
   // 默认不添加cache  cache: true 缓存   false 不缓存
   if (Reflect.has(config, 'cache') && config.cache) {
@@ -217,7 +217,7 @@ async function http<T>(config: AxiosRequestConfig): Promise<Base<T>> {
     }
     requestQueue.push(key)
   }
-  const res = await service.request<Base<T>>(config)
+  const res = await service.request<T>(config)
   return Promise.resolve(res.data)
 }
 

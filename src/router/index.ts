@@ -1,13 +1,14 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import systemRouter from './modules/system'
 
-export const constantRoutes = [
+export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('@/views/Home.vue'),
   },
   {
     path: '/login',
-    component: () => import('@/views/login/login.vue'),
+    component: () => import('@/views/login/index.vue'),
   },
   {
     path: '/one',
@@ -17,6 +18,7 @@ export const constantRoutes = [
     path: '/two',
     component: () => import('@/views/Two.vue'),
   },
+  systemRouter,
 ]
 
 export const asnycRoutes = []

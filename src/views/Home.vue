@@ -1,21 +1,7 @@
+<script setup lang="ts"></script>
+
 <template>
-  <div class="home">
-    <h1>{{ baseApiUrl }}</h1>
-    <el-button>btn</el-button>
-  </div>
+  <div>views-Home</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-const baseApiUrl = process.env.VUE_APP_BASE_API
-
-export default defineComponent({
-  name: 'Home',
-  data() {
-    return {
-      baseApiUrl,
-    }
-  },
-})
-</script>
+<style lang="scss" scoped></style>

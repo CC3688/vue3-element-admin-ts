@@ -53,9 +53,11 @@ const templatePath = path.join(process.cwd(), './template/vue.ejs')
 viewFiles.forEach((item) => {
   const file = item.replace('@/', './')
   const targetPath = path.join(viewPath, file)
-
+  let context = item.replace('@/', '')
+  context = context.replace('.vue', '')
+  context = context.replace(/\//gi, '-')
   if (!fs.existsSync(targetPath)) {
-    ejs.renderFile(templatePath, {}, (err, str) => {
+    ejs.renderFile(templatePath, { context }, (err, str) => {
       if (!err) {
         fse.outputFileSync(targetPath, str)
         console.log(`生成文件: ${targetPath} 成功`)

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div></div>
+  <div>views-Two</div>
 </template>
 
 <style lang="scss" scoped></style>
