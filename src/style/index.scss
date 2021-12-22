@@ -1,0 +1,146 @@
+@import './transition.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.padding-content {
+  padding: 4px 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+
+// 修改 el-card 头的 header 
+.el-card {
+  min-height: 100%;
+
+  .el-card__header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.el-form-item__label {
+  font-weight: 400;
+}
+
+.el-table {
+  .el-table__header thead .el-table__cell {
+    background-color: #F3F6FD;
+  }
+}
+
+// 工具类
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 字相关
+.size-small {
+  font-size: 0.75em;
+}
+
+.size-big {
+  font-size: 1.25em;
+}
+
+.color-gray {
+  color: #BFBFBF;
+}
+
+.color-red {
+  color: #ee7e33;
+}
+
+.color-black {
+  color: #303133;
+}
+
+// padding  margin
+.p-t {
+  padding-top: 0.5em;
+}
+
+.p-b {
+  padding-bottom: 0.5em;
+}
+
+.p-l {
+  padding-left: 0.5em;
+}
+
+.p-r {
+  padding-right: 0.5em;
+}
+
+.m-t {
+  margin-top: 0.5em;
+}
+
+.m-b {
+  margin-bottom: 0.5em;
+}
+
+.m-l {
+  margin-left: 0.5em;
+}
+
+.m-r {
+  margin-right: 0.5em;
+}
+
+
+.card {
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

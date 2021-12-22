@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, defineProps } from 'vue'
-import { isExternal as isEx } from '@/utils/validate'
+import { useAttrs, computed, defineProps } from 'vue'
+import { isExternal } from '@/utils/validate'
 
 const props = defineProps({
   iconClass: {
@@ -12,12 +12,10 @@ const props = defineProps({
     default: '',
   },
 })
-const isExternal = computed(() => {
-  return isEx(props.iconClass)
-})
-const iconName = computed(() => {
-  return `#icon-${props.iconClass}`
-})
+
+const $attrs = useAttrs()
+const isExtern = computed(() => isExternal(props.iconClass))
+const iconName = computed(() => `#icon-${props.iconClass}`)
 const svgClass = computed(() => {
   if (props.className) {
     return 'svg-icon ' + props.className
@@ -31,11 +29,13 @@ const styleExternalIcon = computed(() => {
     '-webkit-mask': `url(${props.iconClass}) no-repeat 50% 50%`,
   }
 })
+
+console.log('svg ... ...')
 </script>
 
 <template>
   <div
-    v-if="isExternal"
+    v-if="isExtern"
     :style="styleExternalIcon"
     class="svg-external-icon svg-icon"
     v-bind="$attrs"

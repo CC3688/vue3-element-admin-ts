@@ -1,34 +1,58 @@
 <script setup lang="ts">
-import { AppMain, Navbar, TagsView, Sidebar } from './components'
+import { AppMain, Sidebar, Navbar } from './components'
+import { useRouter } from 'vue-router'
+import { computed } from 'vue-demi'
+import { useStore } from '@/store'
+
+const store = useStore()
+const router = useRouter()
+
+const isHome = computed(() => {
+  return router.currentRoute.value.fullPath === '/home'
+})
+
+const isCollapse = computed(() => {
+  return store.getters.sidebar.opened
+})
 </script>
 
 <template>
-  <!-- <div :class="classObj" class="app-wrapper">
-    <div
-      v-if="device === 'mobile' && sidebar.opened"
-      class="drawer-bg"
-      @click="handleClickOutside"
-    />
-    <sidebar class="sidebar-container" />
-    <div :class="{ hasTagsView: needTagsView }" class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
-        <navbar />
-        <tags-view v-if="needTagsView" />
-      </div>
-      <app-main />
-    </div>
-  </div> -->
-
-  <div class="app-wrapper">
-    <sidebar class="sidebar-container" />
-    <div class="main-container">
-      <div>
-        <navbar />
-        <tags-view />
-      </div>
-      <app-main />
-    </div>
+  <div class="app-container" :class="{ isCollapse }">
+    <Navbar />
+    <el-scrollbar class="app-sidebar">
+      <Sidebar />
+    </el-scrollbar>
+    <el-scrollbar class="app-main">
+      <AppMain></AppMain>
+    </el-scrollbar>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-container {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas:
+    'app-sidebar app-navbar'
+    'app-sidebar app-main';
+  background-color: #f0f2f5;
+  font-size: 14px;
+  color: #303133;
+  transition: all ease-in-out 1s;
+  // &.isCollapse {
+  //   grid-template-columns: 63px 1fr;
+  //   transition: all ease-in-out 1s;
+  // }
+
+  .app-sidebar {
+    grid-area: app-sidebar;
+  }
+  .app-main {
+    grid-area: app-main;
+  }
+}
+</style>

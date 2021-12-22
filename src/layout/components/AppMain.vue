@@ -1,59 +1,35 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useStore } from '@/store'
-import { useRoute } from 'vue-router'
-const store = useStore()
-const route = useRoute()
+// import { computed } from 'vue'
+// import { useStore } from '@/store'
+// import { useRoute } from 'vue-router'
+// const store = useStore()
+// const route = useRoute()
 
-const cachedViews = computed(() => {
-  return store.state.tagsView.cachedViews
-})
+// const cachedViews = computed(() => {
+//   return store.state.tagsView.cachedViews
+// })
 
-const key = computed(() => {
-  return route.fullPath
-})
+// const key = computed(() => {
+//   return route.fullPath
+// })
 </script>
 
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <keep-alive :include="cachedViews">
-        <router-view :key="key" />
-      </keep-alive>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .app-main {
-  /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.fixed-header + .app-main {
-  padding-top: 50px;
-}
-
-.hasTagsView {
-  .app-main {
-    /* 84 = navbar + tags-view = 50 + 34 */
-    min-height: calc(100vh - 84px);
-  }
-
-  .fixed-header + .app-main {
-    padding-top: 84px;
-  }
-}
-</style>
-
-<style lang="scss">
-// fix css style bug in open el-dialog
-.el-popup-parent--hidden {
-  .fixed-header {
-    padding-right: 15px;
-  }
+  min-height: calc(100vh - 100px - 20px);
+  margin-left: 20px;
+  margin-right: 20px;
 }
 </style>

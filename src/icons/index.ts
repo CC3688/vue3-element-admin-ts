@@ -1,9 +1,16 @@
-import { app } from '@/main'
+import { App, Plugin } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue' // svg component
+
+export default {
+  install: (app: App) => {
+    app.component('svg-icon', SvgIcon)
+  },
+} as Plugin
+
 // register globally
-app.component('svg-icon', SvgIcon)
 
 const req = require.context('./svg', false, /\.svg$/)
-// const requireAll = requireContext: => requireContext.keys().map(requireContext)
-// requireAll(req)
-req.keys().map(req)
+const requireAll = (requireContext: any) =>
+  requireContext.keys().map(requireContext)
+
+requireAll(req)

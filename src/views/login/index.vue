@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useStore } from '@/store'
 import { RouteLocationRaw, useRoute, useRouter } from 'vue-router'
 
@@ -29,6 +29,13 @@ const onSubmit = async () => {
     }
   })
 }
+
+onMounted(() => {
+  setTimeout(() => {
+    console.log('登录页router.getRoutes()::router:', router.getRoutes())
+    console.log('登录页router.getRoutes()::router:', router)
+  }, 2000)
+})
 </script>
 
 <template>

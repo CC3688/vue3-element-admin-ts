@@ -1,168 +1,141 @@
 <script setup lang="ts">
-import Breadcrumb from '@/components/Breadcrumb.vue'
-import Hamburger from '@/components/Hamburger.vue'
-import { ref, computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { useStore } from '@/store'
+import { RouteRecordRaw, useRoute, RouteRecordName } from 'vue-router'
+import { Avatar, ArrowDown, Fold } from '@element-plus/icons'
 
 const store = useStore()
+const route = useRoute()
+const routers = store.getters.routers as RouteRecordRaw[]
+const activeIndex = ref('')
 
-const name = ref('yycu')
-const roles = ref('超级管理员')
-const sidebar = computed(() => store.getters.sidebar)
+// 当前要渲染的路由组
+const navRoute = computed(() => {
+  return routers.filter((i: RouteRecordRaw) => !i.meta?.hidden)
+})
 
-const toggleSideBar = () => {
+// 获取当前路径 需要 激活的 路由
+const getActiveRoute = (name: RouteRecordName) => {
+  return routers.find((i) =>
+    name.toString().startsWith(i.name?.toString() as string)
+  )
+}
+
+// 监听路由的变化
+watchEffect(() => {
+  const name = route.name as string
+  const activeRoute = getActiveRoute(name)
+  store.dispatch('permission/setCurRoute', activeRoute)
+  activeIndex.value = activeRoute?.name as string
+})
+
+const closeSilder = () => {
+  console.log('object')
   store.dispatch('app/toggleSideBar')
 }
 </script>
 
 <template>
-  <div class="navbar">
-    <hamburger
-      id="hamburger-container"
-      :is-active="sidebar.opened"
-      class="hamburger-container"
-      @toggleClick="toggleSideBar"
-    />
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
-    <div class="right-menu">
-      <el-dropdown
-        szie="medium"
-        class="avatar-container right-menu-item hover-effect"
-        trigger="hover"
-      >
-        <div class="name">
-          <span>{{ name }}</span>
+  <section class="app-navbar">
+    <header class="header">
+      <el-icon @click="closeSilder">
+        <Fold />
+      </el-icon>
+      <div class="left">
+        <div class="title" @click="closeSilder">
+          大参林<span class="text">参透</span>
         </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>
-              <span
-                style="display: block; text-align: center; cursor: default"
-                v-html="roles"
-              />
-            </el-dropdown-item>
-            <el-dropdown-item divided>
-              <span style="display: block; text-align: center">重置密码</span>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <span style="display: block; text-align: center">退出登录</span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </div>
-  </div>
+        <div class="gutter"></div>
+        <div class="sub-title">商业经营决策</div>
+      </div>
+      <div class="right">
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            <el-icon class="avatar" :size="18">
+              <avatar />
+            </el-icon>
+            <span class="name">陈俊武</span>
+            <el-icon class="arrow-down" :size="20">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>退出</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </header>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.navbar {
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: #fff;
+@import '~@/style/variables.scss';
+.app-navbar {
+  height: 55px;
+  grid-area: app-navbar;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
-  .hamburger-container {
-    line-height: 46px;
-    height: 100%;
-    float: left;
-    cursor: pointer;
-    transition: background 0.3s;
-    -webkit-tap-highlight-color: transparent;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.025);
-    }
-  }
-
-  .breadcrumb-container {
-    float: left;
-  }
-
-  .errLog-container {
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  .right-menu {
-    float: right;
-    height: 100%;
-    line-height: 50px;
+  overflow: hidden;
+  .header {
     display: flex;
-    justify-content: flex-end;
-
-    &:focus {
-      outline: none;
-    }
-    .message {
-      padding-right: 20px;
-      cursor: pointer;
-      i {
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    .left {
+      line-height: 50px;
+      padding-left: 15px;
+      display: flex;
+      align-items: center;
+      color: #20a635;
+      .title {
+        font-size: 20px;
+        .text {
+          font-size: 22px;
+          padding-left: 2px;
+          color: $--color-primary;
+        }
+      }
+      .gutter {
+        height: 18px;
+        width: 1px;
+        margin-left: 10px;
+        margin-right: 10px;
+        background: $--color-primary;
+      }
+      .sub-title {
         font-size: 18px;
       }
-      &.dot {
+    }
+    .right {
+      .avatar {
         position: relative;
-        &::after {
-          content: ' ';
-          position: absolute;
-          top: 13px;
-          right: 14px;
-          width: 8px;
-          height: 8px;
-          background: red;
-          border-radius: 50%;
-        }
+        top: 3px;
       }
-    }
-
-    .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
-      height: 100%;
-      font-size: 18px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
-        cursor: pointer;
-        transition: background 0.3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, 0.025);
-        }
-      }
-    }
-
-    .avatar-container {
-      margin-right: 15px;
-
       .name {
-        i {
-          font-size: 20px;
-        }
-        span {
-          padding-left: 5px;
-          font-size: 14px;
-        }
+        padding-right: 5px;
+        padding-left: 5px;
       }
-      .avatar-wrapper {
-        margin-top: 5px;
+      .arrow-down {
         position: relative;
-
-        .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
-        }
+        top: 5px;
+      }
+    }
+  }
+  .nav {
+    height: 50px;
+    line-height: 50px;
+    .el-menu--horizontal > .el-menu-item {
+      height: 50px;
+      padding-left: 0;
+      padding-right: 0;
+      a {
+        padding-left: 20px;
+        padding-right: 20px;
       }
     }
   }

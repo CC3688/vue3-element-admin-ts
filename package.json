@@ -15,16 +15,18 @@
     "dsl": "node script/dsl.js"
   },
   "dependencies": {
+    "@element-plus/icons": "0.0.11",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "echarts": "^5.2.2",
     "element-plus": "^1.2.0-beta.5",
     "js-cookie": "^3.0.1",
     "md5": "^2.3.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
