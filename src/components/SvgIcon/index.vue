@@ -29,8 +29,6 @@ const styleExternalIcon = computed(() => {
     '-webkit-mask': `url(${props.iconClass}) no-repeat 50% 50%`,
   }
 })
-
-console.log('svg ... ...')
 </script>
 
 <template>

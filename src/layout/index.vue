@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppMain, Sidebar, Navbar } from './components'
+import { AppMain, Sidebar, AppHeader } from './components'
 import { useRouter } from 'vue-router'
 import { computed } from 'vue-demi'
 import { useStore } from '@/store'
@@ -18,7 +18,7 @@ const isCollapse = computed(() => {
 
 <template>
   <div class="app-container" :class="{ isCollapse }">
-    <Navbar />
+    <AppHeader />
     <el-scrollbar class="app-sidebar">
       <Sidebar />
     </el-scrollbar>

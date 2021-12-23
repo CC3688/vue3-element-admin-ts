@@ -38,7 +38,11 @@ const isCollapse = computed(() => {
       <template v-for="r in routers" :key="r.name">
         <el-menu-item
           v-if="r.children.length === 1"
-          :index="r.path + '/' + r.children[0].path"
+          :index="
+            r.path === '/'
+              ? r.path + r.children[0].path
+              : r.path + '/' + r.children[0].path
+          "
         >
           <svg-icon :iconClass="r.meta?.icon" />
           <template #title>{{ r.meta.title }}</template>
