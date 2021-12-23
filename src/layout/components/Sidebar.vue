@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect, nextTick } from 'vue'
 import { useStore } from '@/store'
-import { RouteRecordRaw, useRoute } from 'vue-router'
+import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
+import { title } from '@/utils/config'
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 const activeIndex = ref('')
 
 // 所有路由
@@ -25,6 +27,10 @@ watchEffect(() => {
 const isCollapse = computed(() => {
   return store.getters.sidebar.opened
 })
+
+const goHome = () => {
+  router.push('/')
+}
 </script>
 
 <template>
@@ -35,6 +41,14 @@ const isCollapse = computed(() => {
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
     >
+      <el-menu-item index="/home">
+        <div class="logo" @click="goHome">
+          <span class="img-wrap">
+            <img src="@/assets/logo.png" alt="logo" />
+          </span>
+          <span class="title">{{ title }}</span>
+        </div>
+      </el-menu-item>
       <template v-for="r in routers" :key="r.name">
         <el-menu-item
           v-if="r.children.length === 1"
@@ -69,6 +83,47 @@ const isCollapse = computed(() => {
   min-height: 100vh;
   background: #304156;
   padding: 0;
+
+  .logo {
+    height: 56px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .img-wrap {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 30px;
+      min-width: 30px;
+
+      img {
+        width: 100%;
+        vertical-align: baseline;
+      }
+    }
+    .title {
+      flex: 1;
+      color: #bfcbd9;
+
+      padding-left: 10px;
+    }
+  }
+  .el-menu--collapse {
+    .el-menu-item .logo .img-wrap {
+      visibility: visible;
+      height: auto;
+      width: auto;
+      margin-left: -6px;
+    }
+  }
+  .el-menu.v-leave-active {
+    .el-menu-item .logo .img-wrap {
+      visibility: visible;
+      height: 30px;
+      width: 30px;
+    }
+  }
   .el-menu {
     width: 200px;
     background: #304156;
