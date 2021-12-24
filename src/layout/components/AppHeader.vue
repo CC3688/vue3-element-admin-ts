@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from '@/store'
-import { RouteRecordRaw, useRoute } from 'vue-router'
 import { Avatar, ArrowDown, Fold, Expand } from '@element-plus/icons'
 import Breadcrumb from './Breadcrumb.vue'
+import TagsView from './TagsView/index'
 
 const store = useStore()
-const route = useRoute()
-const routers = store.getters.routers as RouteRecordRaw[]
-const activeIndex = ref('')
 
 // 监听路由的变化
 
@@ -22,41 +19,48 @@ const isOpened = computed(() => {
 </script>
 
 <template>
-  <section class="app-header">
-    <div class="left">
-      <el-icon @click="closeSilder">
-        <Fold v-show="!isOpened" />
-        <Expand v-show="isOpened" />
-      </el-icon>
-      <Breadcrumb />
-    </div>
-    <div class="right">
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          <el-icon class="avatar" :size="18">
-            <avatar />
-          </el-icon>
-          <span class="name">陈俊武</span>
-          <el-icon class="arrow-down" :size="20">
-            <arrow-down />
-          </el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>退出</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </div>
-  </section>
+  <div class="app-top">
+    <section class="app-header">
+      <div class="left">
+        <el-icon @click="closeSilder">
+          <Fold v-show="!isOpened" />
+          <Expand v-show="isOpened" />
+        </el-icon>
+        <Breadcrumb />
+      </div>
+      <div class="right">
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            <el-icon class="avatar" :size="18">
+              <avatar />
+            </el-icon>
+            <span class="name">陈俊武</span>
+            <el-icon class="arrow-down" :size="20">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>退出</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </section>
+    <TagsView />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '~@/style/variables.scss';
+
+.app-top {
+  grid-area: app-navbar;
+}
 .app-header {
   height: 55px;
   line-height: 55px;
-  grid-area: app-navbar;
+
   padding-left: 20px;
   padding-right: 20px;
   background-color: #fff;

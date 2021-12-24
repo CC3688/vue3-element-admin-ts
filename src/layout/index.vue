@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import { AppMain, Sidebar, AppHeader } from './components'
-import { useRouter } from 'vue-router'
 import { computed } from 'vue-demi'
 import { useStore } from '@/store'
 
 const store = useStore()
-const router = useRouter()
-
-const isHome = computed(() => {
-  return router.currentRoute.value.fullPath === '/home'
-})
 
 const isCollapse = computed(() => {
   return store.getters.sidebar.opened
@@ -35,7 +29,7 @@ const isCollapse = computed(() => {
   overflow: hidden;
   display: grid;
   grid-template-columns: min-content 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 85px 1fr;
   grid-template-areas:
     'app-sidebar app-navbar'
     'app-sidebar app-main';
