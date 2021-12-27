@@ -29,7 +29,7 @@ const isCollapse = computed(() => {
   overflow: hidden;
   display: grid;
   grid-template-columns: min-content 1fr;
-  grid-template-rows: 85px 1fr;
+  grid-template-rows: 90px 1fr;
   grid-template-areas:
     'app-sidebar app-navbar'
     'app-sidebar app-main';

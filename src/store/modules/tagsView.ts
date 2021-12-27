@@ -1,6 +1,6 @@
 import { Module } from 'vuex'
 import { IRootState } from '../index'
-
+import { toUpperCamelCase } from '@/utils'
 export interface ITagsViewState {
   visitedViews: any[]
   cachedViews: any[]
@@ -22,9 +22,10 @@ export const tagsView: Module<ITagsViewState, IRootState> = {
       )
     },
     ADD_CACHED_VIEW: (state, view) => {
-      if (state.cachedViews.includes(view.name)) return
+      const name = toUpperCamelCase(view.name)
+      if (state.cachedViews.includes(name)) return
       if (!view.meta.noCache) {
-        state.cachedViews.push(view.name)
+        state.cachedViews.push(name)
       }
     },
 
@@ -37,7 +38,8 @@ export const tagsView: Module<ITagsViewState, IRootState> = {
       }
     },
     DEL_CACHED_VIEW: (state, view) => {
-      const index = state.cachedViews.indexOf(view.name)
+      const name = toUpperCamelCase(view.name)
+      const index = state.cachedViews.indexOf(name)
       index > -1 && state.cachedViews.splice(index, 1)
     },
 
@@ -47,7 +49,8 @@ export const tagsView: Module<ITagsViewState, IRootState> = {
       })
     },
     DEL_OTHERS_CACHED_VIEWS: (state, view) => {
-      const index = state.cachedViews.indexOf(view.name)
+      const name = toUpperCamelCase(view.name)
+      const index = state.cachedViews.indexOf(name)
       if (index > -1) {
         state.cachedViews = state.cachedViews.slice(index, index + 1)
       } else {

@@ -161,7 +161,9 @@ watch(
   }
 )
 </script>
-
+<script lang="ts">
+export default { name: 'CompassBrandMonitor' }
+</script>
 <template>
   <div class="monitor">
     <div class="card page">

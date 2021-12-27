@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue-demi'
-
-const txt = ref('aaa')
+    
 </script>
-
+<script lang="ts">
+  export default { name: 'MineTarget' }
+</script>
+  
 <template>
-  <div>views-mine-target <input type="text" v-model="txt" /></div>
+  <div>
+    views-mine-target
+  </div>
 </template>
+  
+<style lang="scss" scoped>
 
-<style lang="scss" scoped></style>
+</style>
+  

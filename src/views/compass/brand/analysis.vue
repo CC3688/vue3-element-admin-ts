@@ -1,7 +1,17 @@
-<script setup lang="ts"></script>
-
+<script setup lang="ts">
+    
+</script>
+<script lang="ts">
+  export default { name: 'CompassBrandAnalysis' }
+</script>
+  
 <template>
-  <div>views-compass-brand-analysis</div>
+  <div>
+    views-compass-brand-analysis
+  </div>
 </template>
+  
+<style lang="scss" scoped>
 
-<style lang="scss" scoped></style>
+</style>
+  

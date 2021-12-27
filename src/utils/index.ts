@@ -80,3 +80,19 @@ export function mergeOptions<T extends { [propName: string]: any }>(
 
   return target
 }
+
+
+/**
+ *  router name to Upper Camel Case
+ * @param str: string
+ * @param flag: string
+ * @retunr string
+ */
+ export function toUpperCamelCase(str: string, flag = '_') {
+  let temp = ''
+  const arr = str.split(flag)
+  arr.forEach((item) => {
+    temp += `${item.slice(0, 1).toUpperCase()}${item.slice(1)}`
+  })
+  return temp
+}

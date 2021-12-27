@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, getCurrentInstance } from 'vue'
 import {
   ArrowRight,
   Clock,
@@ -13,6 +13,10 @@ import LineChart from './components/LineChart.vue'
 import BarChart from './components/BarChart.vue'
 import PieChart from './components/PieChart.vue'
 import CardItem from './components/CardItem.vue'
+
+const app = getCurrentInstance()
+
+console.log('app::', app)
 
 const barData = reactive({
   salesVolume: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20],
@@ -177,7 +181,9 @@ const addCent = (row, column, key) => {
   return row[key] + '%'
 }
 </script>
-
+<script lang="ts">
+export default { name: 'HomeIndex' }
+</script>
 <template>
   <div class="home">
     <el-row :gutter="20">

@@ -11,6 +11,7 @@ import { retailRouter } from './modules/retail'
 import { marketingRouter } from './modules/marketing'
 import { mineRouter } from './modules/mine'
 
+
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -39,6 +40,20 @@ export const constantRoutes: RouteRecordRaw[] = [
       hidden: true,
       title: '登录',
     },
+  },
+  {
+    path: '/redirect',
+    component: Layout,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index.vue')
+      }
+    ],
+    meta: {
+      hidden: true,
+
+    }
   },
 ]
 

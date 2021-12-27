@@ -71,6 +71,9 @@ const onSubmit = () => {
 }
 // 表格 end
 </script>
+<script lang="ts">
+export default { name: 'CompassBrandIndex' }
+</script>
 
 <template>
   <div class="brand-index">

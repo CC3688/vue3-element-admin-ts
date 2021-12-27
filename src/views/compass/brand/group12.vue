@@ -106,6 +106,9 @@ const cp = reactive({
 
 // 地域 end
 </script>
+<script lang="ts">
+export default { name: 'CompassBrandGroup12' }
+</script>
 
 <template>
   <div class="group12">

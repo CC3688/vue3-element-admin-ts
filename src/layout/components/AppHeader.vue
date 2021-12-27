@@ -56,6 +56,7 @@ const isOpened = computed(() => {
 
 .app-top {
   grid-area: app-navbar;
+  overflow: hidden;
 }
 .app-header {
   height: 55px;

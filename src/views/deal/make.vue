@@ -1,7 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const text = ref('')
+
+console.log('DealMake ... ...')
+</script>
+<script lang="ts">
+export default { name: 'DealMake' }
+</script>
 
 <template>
-  <div>views-deal-make</div>
+  <div><input type="text" v-model="text" /></div>
 </template>
 
 <style lang="scss" scoped></style>

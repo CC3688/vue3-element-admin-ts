@@ -29,11 +29,8 @@ const handleScroll = (
   e: Record<keyof WheelEvent | keyof { wheelDelta: number }, any>
 ) => {
   const eventDelta = e.wheelDelta || -e.deltaY * 40
-  const $scrollWrapper = scrollWrapper
-  // $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4
-  console.log('scrollContainer::', $scrollWrapper.value)
-  console.log('scrollContainer::', $scrollWrapper.value.setScrollLeft(500))
-  console.log('eventDelta::', eventDelta)
+  const $scrollWrapper = scrollWrapper.value.wrap$
+  $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4
 }
 
 // const moveToTarget = (currentTag) => {
