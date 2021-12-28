@@ -2,7 +2,6 @@
 export default { name: 'DealGeneral' }
 </script>
 <script setup lang="ts">
-// eslint-disable-next-line import/first
 import { ref } from 'vue'
 
 const text = ref('')
