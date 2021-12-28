@@ -28,7 +28,8 @@ const key = computed(() => {
 <style lang="scss" scoped>
 .app-main {
   min-height: calc(100vh - 100px - 20px);
-  margin-left: 20px;
-  margin-right: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 </style>

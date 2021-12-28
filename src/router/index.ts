@@ -5,12 +5,12 @@ import {
   RouteRecordRaw,
 } from 'vue-router'
 import Layout from '@/layout/index.vue'
-import { compassRouter } from './modules/compass'
-import { dealRouter } from './modules/deal'
-import { retailRouter } from './modules/retail'
-import { marketingRouter } from './modules/marketing'
-import { mineRouter } from './modules/mine'
+import { importRoute } from '@/utils/importAll'
 
+/**
+ *  路由需要排序, 可以跟由名,用数字开头来排序
+ */
+const files = importRoute(require.context('./modules', false, /\.ts$/))
 
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -47,22 +47,17 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index.vue')
-      }
+        component: () => import('@/views/redirect/index.vue'),
+      },
     ],
     meta: {
       hidden: true,
-
-    }
+    },
   },
 ]
 
 export const asnycRoutes: RouteRecordRaw[] = [
-  compassRouter,
-  dealRouter,
-  retailRouter,
-  marketingRouter,
-  mineRouter,
+  ...files,
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -87,8 +82,6 @@ export const resetRouter = (removeRouters: RouteRecordName[]) => {
   removeRouters.forEach(async (item: RouteRecordName) => {
     await router.removeRoute(item)
   })
-
-  console.log('resetRouter 执行了')
 }
 
 export default router

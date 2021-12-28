@@ -81,6 +81,7 @@ const isOpened = computed(() => {
       padding-bottom: 5px;
       padding-right: 5px;
       box-sizing: content-box;
+      cursor: pointer;
     }
   }
   .right {

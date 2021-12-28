@@ -16,8 +16,6 @@ import CardItem from './components/CardItem.vue'
 
 const app = getCurrentInstance()
 
-console.log('app::', app)
-
 const barData = reactive({
   salesVolume: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20],
   rateOfMargin: [20, 36, 10, 10, 5, 36, 10, 10, 20, 5, 20, 20],
@@ -180,9 +178,6 @@ const toggleTable = () => {
 const addCent = (row, column, key) => {
   return row[key] + '%'
 }
-</script>
-<script lang="ts">
-export default { name: 'HomeIndex' }
 </script>
 <template>
   <div class="home">
