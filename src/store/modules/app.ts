@@ -61,5 +61,3 @@ export const app: Module<IAppState, IRootState> = {
     },
   },
 }
-
-export default { a: 1 }
