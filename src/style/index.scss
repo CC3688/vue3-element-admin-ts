@@ -1,4 +1,5 @@
 @import './transition.scss';
+@import './variables.scss';
 
 body {
   height: 100%;
@@ -71,6 +72,11 @@ div:focus {
   .el-table__header thead .el-table__cell {
     background-color: #F3F6FD;
   }
+}
+
+// 进度条颜色
+#nprogress .bar {
+  background-color: $--color-primary;
 }
 
 // 工具类

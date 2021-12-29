@@ -1,9 +1,12 @@
 import router from '@/router'
 import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/auth'
 import { store } from '@/store'
 import { RouteRecordRaw } from 'vue-router'
 import { ElNotification } from 'element-plus'
+
+NProgress.configure({ showSpinner: false })
 
 const whiteList = ['/login', '/test', '/two']
 
