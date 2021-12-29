@@ -1,3 +1,6 @@
+<script lang="ts">
+export default { name: 'CompassBrandIndex' }
+</script>
 <script setup lang="ts">
 import { ArrowLeftBold, ArrowRightBold, Search } from '@element-plus/icons'
 import { reactive, ref } from 'vue'
@@ -70,9 +73,6 @@ const onSubmit = () => {
   }
 }
 // 表格 end
-</script>
-<script lang="ts">
-export default { name: 'CompassBrandIndex' }
 </script>
 
 <template>

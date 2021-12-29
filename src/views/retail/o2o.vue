@@ -1,17 +1,10 @@
-<script setup lang="ts">
-    
-</script>
 <script lang="ts">
-  export default { name: 'RetailO2o' }
+export default { name: 'RetailO2o' }
 </script>
-  
-<template>
-  <div>
-    views-retail-o2o
-  </div>
-</template>
-  
-<style lang="scss" scoped>
 
-</style>
-  
+<script setup lang="ts"></script>
+<template>
+  <div>views-retail-o2o</div>
+</template>
+
+<style lang="scss" scoped></style>

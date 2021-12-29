@@ -7,6 +7,7 @@ import {
   getCurrentInstance,
   nextTick,
   watchEffect,
+  Events,
 } from 'vue'
 import { useStore } from '@/store'
 import {
@@ -22,7 +23,6 @@ import path from 'path'
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
-const routePath = route.fullPath
 
 const affixTags = ref<RouteRecordRaw[]>([])
 const selectedTag = ref({})
@@ -97,6 +97,7 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
 
 const initTags = () => {
   const affixTageTemp = (affixTags.value = filterAffixTags(routes.value))
+  console.log('affixTageTemp:::', affixTageTemp)
   for (const tag of affixTageTemp) {
     // Must have tag name
     if (tag.name) {
@@ -105,7 +106,7 @@ const initTags = () => {
   }
 }
 
-const openMenu = (tag: any, e) => {
+const openMenu = (tag: any, e: any) => {
   const $el = app.value?.ctx?.$el
   const menuMinWidth = 105
   const offsetLeft = $el.getBoundingClientRect().left // container margin left
@@ -136,7 +137,6 @@ const refreshSelectedTag = (view: any) => {
 }
 
 const moveToCurrentTag = () => {
-  console.log('tag:::', tag.value)
   const tags = tag.value
   nextTick(() => {
     for (const tag of tags) {
@@ -187,7 +187,7 @@ watch(
   },
   {
     deep: true,
-    immediate: true,
+    immediate: false,
   }
 )
 
@@ -226,7 +226,7 @@ onMounted(() => {
           class="el-icon-close"
           @click.prevent.stop="closeSelectedTag(tag)"
         >
-          <close />
+          <Close />
         </el-icon>
       </router-link>
     </ScrollPane>

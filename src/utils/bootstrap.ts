@@ -14,8 +14,6 @@ export default {
     // 注册全局组件
     for (const key in allComponent) {
       if (Object.prototype.hasOwnProperty.call(allComponent, key)) {
-        console.log('key::', key)
-        console.log('allComponent[key]::', allComponent[key])
         app.component(key, allComponent[key])
       }
     }

@@ -5,8 +5,6 @@ export default { name: 'DealGeneral' }
 import { ref } from 'vue'
 
 const text = ref('')
-
-console.log('DealGeneral ....')
 </script>
 
 <template>

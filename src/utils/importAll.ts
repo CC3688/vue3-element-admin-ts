@@ -6,12 +6,6 @@ import { toUpperCamelCase } from '@/utils'
  * @returns 默认导出的数组
  */
 export function importAll(files: __WebpackModuleApi.RequireContext) {
-  // console.log('files::', files)
-  // console.log('keys::', files.keys())
-  // console.log('files::', files.id)
-  // console.log('resolve files.keys()[0]::', files.keys()[0])
-  // console.log('resolve3::', files.resolve(files.keys()[0]))
-  // console.log('module::', files(files.keys()[0]))
   const allModulesRouter = files.keys().map((file) => {
     return files(file)
   })
@@ -70,7 +64,6 @@ export function importComponent(files: __WebpackModuleApi.RequireContext) {
     })
 
   all.forEach((i) => {
-    console.log('i', i.default.__file)
     const tempKeys = Reflect.ownKeys(temp)
     const nameOptions = i.default.__file
       .split('/')

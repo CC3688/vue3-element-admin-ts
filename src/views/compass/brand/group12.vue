@@ -1,3 +1,6 @@
+<script lang="ts">
+export default { name: 'CompassBrandGroup12' }
+</script>
 <script setup lang="ts">
 import { ArrowLeftBold, ArrowRightBold, CloseBold } from '@element-plus/icons'
 import { reactive, ref } from 'vue'
@@ -105,9 +108,6 @@ const cp = reactive({
 })
 
 // 地域 end
-</script>
-<script lang="ts">
-export default { name: 'CompassBrandGroup12' }
 </script>
 
 <template>

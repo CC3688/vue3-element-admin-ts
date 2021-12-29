@@ -21,7 +21,6 @@ const onSubmit = async () => {
     if (valid) {
       const res = await store.dispatch('user/login', formData)
       if (res) {
-        console.log('redirect', redirect)
         router.push(redirect)
       }
     } else {
@@ -33,7 +32,6 @@ const onSubmit = async () => {
 onMounted(() => {
   setTimeout(() => {
     console.log('登录页router.getRoutes()::router:', router.getRoutes())
-    console.log('登录页router.getRoutes()::router:', router)
   }, 2000)
 })
 </script>

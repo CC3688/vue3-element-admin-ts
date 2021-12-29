@@ -1,3 +1,6 @@
+<script lang="ts">
+export default { name: 'CompassBrandMonitor' }
+</script>
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
 import { ArrowLeftBold, ArrowRightBold, Top } from '@element-plus/icons'
@@ -160,9 +163,6 @@ watch(
     immediate: true,
   }
 )
-</script>
-<script lang="ts">
-export default { name: 'CompassBrandMonitor' }
 </script>
 <template>
   <div class="monitor">

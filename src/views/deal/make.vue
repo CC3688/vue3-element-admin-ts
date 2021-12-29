@@ -1,12 +1,10 @@
+<script lang="ts">
+export default { name: 'DealMake' }
+</script>
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const text = ref('')
-
-console.log('DealMake ... ...')
-</script>
-<script lang="ts">
-export default { name: 'DealMake' }
 </script>
 
 <template>

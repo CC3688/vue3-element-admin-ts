@@ -29,7 +29,6 @@ var options = {
   tooltip: {
     trigger: 'axis',
     formatter(obj: any[]) {
-      console.log('obj::', obj)
       return `${obj[0].name} <br />
       ${obj[1].marker}${obj[1].seriesName}   ${-obj[1].value} <br />
       ${obj[0].marker}${obj[0].seriesName}   ${obj[0].value} 
