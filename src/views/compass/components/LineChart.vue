@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EChartsOption, graphic } from 'echarts'
+import echarts, { ECOption } from '@/vendor/echarts'
 import { ref, defineProps } from 'vue'
 import { useEcharts } from '@/hooks/useEcharts'
 
@@ -14,7 +14,7 @@ const props = defineProps({
 })
 
 // 指定图表的配置项和数据
-var options: EChartsOption = {
+var options: ECOption = {
   grid: {
     top: 10,
     left: 0,
@@ -48,7 +48,7 @@ var options: EChartsOption = {
       showSymbol: false,
       areaStyle: {
         opacity: 0.8,
-        color: new graphic.LinearGradient(0, 0, 0, 1, [
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
             color: 'rgb(0, 221, 255)',

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EChartsOption } from 'echarts'
+import { ECOption } from '@/vendor/echarts'
 import { ref, defineProps } from 'vue'
 import { useEcharts } from '@/hooks/useEcharts'
 
@@ -74,7 +74,7 @@ const options = {
   ],
 }
 
-useEcharts(id.value, options as EChartsOption)
+useEcharts(id.value, options as ECOption)
 </script>
 
 <template>

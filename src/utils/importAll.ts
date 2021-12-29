@@ -52,7 +52,7 @@ export function importStore(files: __WebpackModuleApi.RequireContext) {
 export function importComponent(files: __WebpackModuleApi.RequireContext) {
   const temp: any = {}
   const all = importAll(files)
-    .filter((i) => i.default.__file.split('/').length < 5)
+    .filter((i) => i.default.__file?.split('/').length < 5)
     .sort((a, b) => {
       const aLength = a.default.__file
         .split('/')

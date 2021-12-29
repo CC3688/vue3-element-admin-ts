@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EChartsOption } from 'echarts'
+import { ECOption } from '@/vendor/echarts'
 import { ref } from 'vue'
 import { useEcharts } from '@/hooks/useEcharts'
 
@@ -16,7 +16,7 @@ const data = [
 ]
 
 // 指定图表的配置项和数据
-var options: EChartsOption = {
+var options: ECOption = {
   title: {
     text: '销售额类别占比',
     top: 5,

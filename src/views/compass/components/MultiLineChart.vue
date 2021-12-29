@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EChartsOption } from 'echarts'
+import { ECOption } from '@/vendor/echarts'
 import { ref, defineProps, watch } from 'vue'
 import { useEcharts } from '@/hooks/useEcharts'
 
@@ -58,7 +58,7 @@ const options = {
   series: props.series,
 }
 
-const obj = useEcharts(id.value, options as EChartsOption)
+const obj = useEcharts(id.value, options as ECOption)
 watch(
   props,
   () => {

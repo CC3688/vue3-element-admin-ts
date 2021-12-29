@@ -97,7 +97,6 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
 
 const initTags = () => {
   const affixTageTemp = (affixTags.value = filterAffixTags(routes.value))
-  console.log('affixTageTemp:::', affixTageTemp)
   for (const tag of affixTageTemp) {
     // Must have tag name
     if (tag.name) {
