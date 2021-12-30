@@ -32,10 +32,10 @@ function move(amount: number) {
 }
 
 function position(): number {
-  // eslint-disable-next-line
-  // @ts-ignore
   return (
     document.documentElement.scrollTop ||
+    // eslint-disable-next-line
+    // @ts-ignore
     document.body.parentNode.scrollTop ||
     document.body.scrollTop
   )
