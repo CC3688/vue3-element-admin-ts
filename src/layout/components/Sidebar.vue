@@ -180,8 +180,8 @@ const goHome = () => {
 }
 </style>
 <style lang="scss">
-.el-menu--popup.is-light {
-  background: #1f2d3d;
+.el-menu--popup {
+  background: #1f2d3d !important;
   .el-menu-item {
     color: #bfcbd9;
     &:hover {
