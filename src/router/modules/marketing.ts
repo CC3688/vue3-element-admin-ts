@@ -17,6 +17,7 @@ export const marketingRouter: RouteRecordRaw = {
       component: () => import('@/views/marketing/index.vue'),
       name: 'marketing_index',
       meta: {
+        breadcrumb: false,
         title: '营销',
       },
     },

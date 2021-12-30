@@ -1,9 +1,9 @@
 import { App } from 'vue'
 import 'normalize.css/normalize.css'
 import '@/utils/permission'
-import '@/style/index.scss'
 import '@/icons'
 import allComponent from '@/components/index'
+import '@/style/index.scss'
 
 export default (app: App) => {
   app.config.globalProperties.$ELEMENT = {

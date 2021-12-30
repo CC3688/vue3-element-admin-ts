@@ -17,6 +17,7 @@ export const retailRouter: RouteRecordRaw = {
       component: () => import('@/views/retail/o2o.vue'),
       name: 'retail_o2o',
       meta: {
+        breadcrumb: false,
         title: 'O2O驾驶舱',
       },
     },

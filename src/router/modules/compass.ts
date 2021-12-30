@@ -43,6 +43,7 @@ export const compassRouter: RouteRecordRaw = {
           name: 'compass_brand_index',
           meta: {
             title: '品类分析',
+            breadcrumb: false,
             activeMenu: '/compass/brand',
             hidden: true,
           },

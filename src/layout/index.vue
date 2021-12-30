@@ -33,7 +33,8 @@ const isCollapse = computed(() => {
   grid-template-areas:
     'app-sidebar app-navbar'
     'app-sidebar app-main';
-  background-color: #f0f2f5;
+  background-color: #ffffff;
+  // background-color: #f0f2f5;
   font-size: 14px;
   color: #303133;
   transition: all ease-in-out 1s;

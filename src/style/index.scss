@@ -1,5 +1,7 @@
+@use "sass:map";
 @import './transition.scss';
 @import './variables.scss';
+
 
 body {
   height: 100%;
@@ -64,6 +66,20 @@ div:focus {
   }
 }
 
+// 查询表单 统一样式
+.my-query-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  .el-form-item {
+    width: 100%;
+  }
+  & div.el-form-item:last-child {
+    grid-column: 3/4;
+    text-align: right;
+  }
+}
+
 .el-form-item__label {
   font-weight: 400;
 }
@@ -76,7 +92,7 @@ div:focus {
 
 // 进度条颜色
 #nprogress .bar {
-  background-color: $--color-primary;
+  background-color: $primaryColor;
 }
 
 // 工具类
