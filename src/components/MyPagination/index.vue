@@ -10,11 +10,10 @@ interface IProps {
   total: number
   page: number
   limit: number
-  pageSizes: number[]
-  layout: string
-  background: boolean
-  autoScroll: boolean
-  hidden: boolean
+  pageSizes?: number[]
+  layout?: string
+  background?: boolean
+  autoScroll?: boolean
 }
 const props = withDefaults(defineProps<IProps>(), {
   page: 1,
@@ -23,7 +22,6 @@ const props = withDefaults(defineProps<IProps>(), {
   layout: 'total, sizes, prev, pager, next, jumper',
   background: true,
   autoScroll: true,
-  hidden: false,
 })
 
 // 计算属性
@@ -31,29 +29,32 @@ const currentPage = computed({
   get() {
     return props.page
   },
-  set() {
-    emits('update:page')
+  set(val) {
+    emits('update:page', val)
   },
 })
 const pageSize = computed({
   get() {
     return props.limit
   },
-  set() {
-    emits('update:limit')
+  set(val) {
+    emits('update:limit', val)
   },
 })
 
 // 方法
 const handleSizeChange = (val: number) => {
-  emits('pagination', { page: currentPage, limit: val })
+  pageSize.value = val
+  currentPage.value = 1
+  emits('pagination')
   if (props.autoScroll) {
     scrollTo(0, 800)
   }
 }
 
 const handleCurrentChange = (val: number) => {
-  emits('pagination', { page: val, limit: pageSize })
+  currentPage.value = val
+  emits('pagination')
   if (props.autoScroll) {
     scrollTo(0, 800)
   }
@@ -61,19 +62,23 @@ const handleCurrentChange = (val: number) => {
 </script>
 
 <template>
-  <div :class="{ hidden: hidden }" class="pagination-container">
-    <el-pagination
-      :background="background"
-      v-model:current-page="currentPage"
-      v-model:page-size="pageSize"
-      :layout="layout"
-      :page-sizes="pageSizes"
-      :total="total"
-      v-bind="$attrs"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
-  </div>
+  <el-pagination
+    :background="background"
+    v-model:currentPage="currentPage"
+    :page-sizes="pageSizes"
+    :layout="layout"
+    :page-size="pageSize"
+    :total="total"
+    :pager-count="5"
+    v-bind="$attrs"
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+  />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-pagination {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+</style>

@@ -19,7 +19,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "echarts": "^5.2.2",
-    "element-plus": "^1.2.0-beta.5",
+    "element-plus": "^1.2.0-beta.6",
     "js-cookie": "^3.0.1",
     "md5": "^2.3.0",
     "normalize.css": "^8.0.1",

@@ -35,12 +35,7 @@ const goHome = () => {
 
 <template>
   <aside class="app-sidebar">
-    <el-menu
-      :defaultActive="activeIndex"
-      router
-      class="el-menu-vertical-demo"
-      :collapse="isCollapse"
-    >
+    <el-menu :defaultActive="activeIndex" router :collapse="isCollapse">
       <el-menu-item index="/home">
         <div class="logo" @click="goHome">
           <span class="img-wrap">
@@ -115,6 +110,9 @@ const goHome = () => {
       height: auto;
       width: auto;
       margin-left: -6px;
+    }
+    .title {
+      display: none;
     }
   }
   .el-menu.v-leave-active {

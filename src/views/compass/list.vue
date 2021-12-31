@@ -2,7 +2,7 @@
 export default { name: 'CompassList' }
 </script>
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { getPost } from '@/api/compass'
 import { IPost, IPostParams } from '@/interfaces/compass'
 
@@ -12,23 +12,64 @@ const queryForm = reactive({
   title: '',
 })
 
+const pageInfo = reactive({
+  total: 0,
+  pageNum: 1,
+  pageSize: 10,
+})
+
+const tableData = ref()
+const columnData = [
+  {
+    prop: 'id',
+    label: 'ID值',
+    width: '',
+    align: 'center',
+  },
+  {
+    prop: 'title',
+    label: '标题',
+    width: '',
+    align: 'center',
+  },
+  {
+    prop: 'author',
+    label: '作者',
+    width: '',
+    align: 'center',
+  },
+  {
+    prop: '',
+    label: '操作',
+    width: '',
+    align: 'center',
+    slot: 'operation',
+  },
+]
+
+const loadData = () => {
+  getAllPost()
+}
 const getAllPost = async () => {
   const params: IPostParams = {
-    _page: 1,
-    _limit: 10,
+    _page: pageInfo.pageNum,
+    _limit: pageInfo.pageSize,
   }
   if (queryForm.id) params.id = queryForm.id
   if (queryForm.author) params.author = queryForm.author
   if (queryForm.title) params.title = queryForm.title
   const posts = await getPost<IPost[]>(params)
-  console.log(posts)
-  posts.forEach((i) => {
-    console.log(`${i.id}-${i.author}-${i.title}`)
-  })
+
+  tableData.value = posts
+  pageInfo.total = 25
 }
 
 const onSubmit = () => {
   getAllPost()
+}
+
+const detail = (row: IPost) => {
+  console.log(`row: ${row.id} - ${row.title} - ${row.author}`)
 }
 
 getAllPost()
@@ -67,9 +108,22 @@ getAllPost()
         <el-button type="primary" @click="onSubmit">Query</el-button>
       </el-form-item>
     </el-form>
-    <my-table></my-table>
-    <my-pagination />
+    <my-table :data="tableData" :column-data="columnData">
+      <template v-slot:operation="{ scope }">
+        <el-button @click="detail(scope.row)">查看详情</el-button>
+      </template>
+    </my-table>
+    <my-pagination
+      :total="pageInfo.total"
+      v-model:page="pageInfo.pageNum"
+      v-model:limit="pageInfo.pageSize"
+      @pagination="loadData"
+    />
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-pagination {
+  text-align: right;
+}
+</style>
