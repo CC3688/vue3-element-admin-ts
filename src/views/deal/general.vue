@@ -10,7 +10,6 @@ const text = ref('')
 <template>
   <div>
     <div><input type="text" v-model="text" /></div>
-    <Two />
   </div>
 </template>
 
